@@ -10,10 +10,10 @@ export class TodosController {
 
     private handleError = (res: Response, error: unknown) => {
         if (error instanceof CustomError) {
-            res.status(error.statusCode).json({ error: error.message });
+            res.status(error.statusCode).json({ ok: false, message: error.message });
             return;
         }
-        res.status(500).json({ error: 'Internal server error - check logs' });
+        res.status(500).json({ ok: false, message: 'Internal server error - check logs' });
     }
 
     public getTodos = (req: Request, res: Response) => {
