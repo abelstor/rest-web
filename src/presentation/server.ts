@@ -1,4 +1,5 @@
 import express, { Router } from 'express';
+import compression from 'compression';
 import path from 'path';
 
 interface Options {
@@ -28,6 +29,7 @@ export class Server {
         //* Middlewares
         this.app.use(express.json()); // Parsea el body a json row
         this.app.use(express.urlencoded({ extended: true })); // Parsea el body a x-www-form-urlencoded
+        this.app.use(compression()); // Comprime las respuestas
 
         //* Public folder
         this.app.use(express.static(this.publicPath));
